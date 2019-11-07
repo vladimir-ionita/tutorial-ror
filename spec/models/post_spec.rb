@@ -6,4 +6,16 @@ RSpec.describe Post, type: :model do
 
     expect(post.save).to eq(false)
   end
+  it "should not accept titles shorter than 10 characters" do
+    post = Post.new
+    post.title = "123456789"
+
+    expect(post.save).to eq(false)
+  end
+  it "should accept titles longer than 10 characters" do
+    post = Post.new
+    post.title = "1234567890x"
+
+    expect(post.save).to eq(true)
+  end
 end
